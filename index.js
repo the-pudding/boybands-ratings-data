@@ -31,7 +31,10 @@ function init() {
       .key(d => d.slug)
       .entries(data);
 
-    const string = JSON.stringify(nested, null, 2);
+		const timestamp = Date.now();
+		const output = { timestamp, data: nested };
+		
+    const string = JSON.stringify(outpu, null, 2);
     const path = `${AWS_PATH}/user-ratings`;
     uploadToS3({ string, path, ext: 'json' })
       .then(() => {
